@@ -1,0 +1,1148 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{ORB}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+     Oriented FAST and Rotated BRIEF (ORB)
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+One of the most challenging problems in computer vision is object
+detection. Object detection is the ability to recognize particular
+objects in images and being able to determine the location of those
+objects within the images. For example, if we perform car detection in
+the image below, we will not only be interested in saying how many cars
+are there in the image but also \emph{where} those cars are in the
+image.
+
+Fig1. - Car Detection.
+
+ In order to perform this object-based image analysis, we will use ORB.
+ORB is a very fast algorithm that creates feature vectors from detected
+keypoints. You've learned that ORB has some great properties, such as
+being invariant to rotations, changes in illumination, and noise.
+
+In this notebook, we will see these properties in action and implement
+the ORB algorithm to detect a person's face in an image using facial
+keypoints.
+
+    \hypertarget{loading-images-and-importing-resources}{%
+\subsubsection{Loading Images and Importing
+Resources}\label{loading-images-and-importing-resources}}
+
+In the code below we will use OpenCV to load an image of a woman's face,
+which will use as our training image. Since, the \texttt{cv2.imread()}
+function loads images as BGR we will convert our image to RGB so we can
+display it with the correct colors. As usual we will convert our BGR
+image to Gray scale for analysis.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        
+        \PY{k+kn}{import} \PY{n+nn}{cv2}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        
+        \PY{c+c1}{\PYZsh{} Set the default figure size}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Load the training image}
+        \PY{n}{image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./images/face.jpeg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the training image to RGB}
+        \PY{n}{training\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the training image to gray Scale}
+        \PY{n}{training\PYZus{}gray} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Display the images}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Original Training Image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{training\PYZus{}image}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gray Scale Training Image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{training\PYZus{}gray}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{locating-keypoints}{%
+\subsection{Locating Keypoints}\label{locating-keypoints}}
+
+The first step in the ORB algorithm is to locate all the keypoints in
+the training image. After the keypoints have been located, ORB creates
+their corresponding binary feature vectors and groups them together in
+the ORB descriptor.
+
+We will use OpenCV's \texttt{ORB} class to locate the keypoints and
+create their corresponding ORB descriptor. The parameters of the ORB
+algorithm are setup using the \texttt{ORB\_create()} function. The
+parameters of the \texttt{ORB\_create()} function and their default
+values are given below:
+
+\texttt{cv2.ORB\_create(nfeatures\ =\ 500,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scaleFactor\ =\ 1.2,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nlevels\ =\ 8,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ edgeThreshold\ =\ 31,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ firstLevel\ =\ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WTA\_K\ =\ 2,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scoreType\ =\ HARRIS\_SCORE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ patchSize\ =\ 31,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fastThreshold\ =\ 20)}
+
+Parameters:
+
+\begin{itemize}
+\item
+  \textbf{nfeatures} - \emph{int}\\
+  Determines the maximum number of features (keypoints) to locate.
+\item
+  \textbf{scaleFactor} - \emph{float}\\
+  Pyramid decimation ratio, must be greater than 1. ORB uses an image
+  pyramid to find features, therefore you must provide the scale factor
+  between each layer in the pyramid and the number of levels the pyramid
+  has. A \texttt{scaleFactor\ =\ 2} means the classical pyramid, where
+  each next level has 4x less pixels than the previous. A big scale
+  factor will diminish the number of features found.
+\item
+  \textbf{nlevels} - \emph{int}\\
+  The number of pyramid levels. The smallest level will have a linear
+  size equal to input\_image\_linear\_size/pow(scaleFactor, nlevels).
+\item
+  \textbf{edgeThreshold} - - \emph{int}\\
+  The size of the border where features are not detected. Since the
+  keypoints have a specific pixel size, the edges of images must be
+  excluded from the search. The size of the \texttt{edgeThreshold}
+  should be equal to or greater than the patchSize parameter.
+\item
+  \textbf{firstLevel} - \emph{int}\\
+  This parameter allows you to determine which level should be treated
+  as the first level in the pyramid. It should be 0 in the current
+  implementation. Usually, the pyramid level with a scale of unity is
+  considered the first level.
+\item
+  \textbf{WTA\_K} - \emph{int}\\
+  The number of random pixels used to produce each element of the
+  oriented BRIEF descriptor. The possible values are 2, 3, and 4, with 2
+  being the default value. For example, a value of 3 means three random
+  pixels are chosen at a time to compare their brightness. The index of
+  the brightest pixel is returned. Since there are 3 pixels, the
+  returned index will be either 0, 1, or 2.
+\item
+  \textbf{scoreType} - \emph{int}\\
+  This parameter can be set to either HARRIS\_SCORE or FAST\_SCORE. The
+  default HARRIS\_SCORE means that the Harris corner algorithm is used
+  to rank features. The score is used to only retain the best features.
+  The FAST\_SCORE produces slightly less stable keypoints, but it is a
+  little faster to compute.
+\item
+  \textbf{patchSize} - \emph{int}\\
+  Size of the patch used by the oriented BRIEF descriptor. Of course, on
+  smaller pyramid layers the perceived image area covered by a feature
+  will be larger.
+\end{itemize}
+
+As we can see, the \texttt{cv2.\ ORB\_create()}function supports a wide
+range of parameters. The first two arguments (\texttt{nfeatures} and
+\texttt{scaleFactor}) are probably the ones you are most likely to
+change. The other parameters can be safely left at their default values
+and you will get good results.
+
+In the code below, we will use the \texttt{ORB\_create()}function to set
+the maximum number of keypoints we want to detect to 200, and to set the
+pyramid decimation ratio to 2.1. We will then use the
+\texttt{.detectAndCompute\ (image)}method to locate the keypoints in the
+given training \texttt{image}and to compute their corresponding ORB
+descriptor. Finally, we will use the
+\texttt{cv2.drawKeypoints()}function to visualize the keypoints found by
+the ORB algorithm.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Import copy to make copies of the training image}
+        \PY{k+kn}{import} \PY{n+nn}{copy}
+        
+        \PY{c+c1}{\PYZsh{} Set the default figure size}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{14.0}\PY{p}{,} \PY{l+m+mf}{7.0}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Set the parameters of the ORB algorithm by specifying the maximum number of keypoints to locate and}
+        \PY{c+c1}{\PYZsh{} the pyramid decimation ratio}
+        \PY{n}{orb} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{ORB\PYZus{}create}\PY{p}{(}\PY{l+m+mi}{200}\PY{p}{,} \PY{l+m+mf}{2.0}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Find the keypoints in the gray scale training image and compute their ORB descriptor.}
+        \PY{c+c1}{\PYZsh{} The None parameter is needed to indicate that we are not using a mask.}
+        \PY{n}{keypoints}\PY{p}{,} \PY{n}{descriptor} \PY{o}{=} \PY{n}{orb}\PY{o}{.}\PY{n}{detectAndCompute}\PY{p}{(}\PY{n}{training\PYZus{}gray}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Create copies of the training image to draw our keypoints on}
+        \PY{n}{keyp\PYZus{}without\PYZus{}size} \PY{o}{=} \PY{n}{copy}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{training\PYZus{}image}\PY{p}{)}
+        \PY{n}{keyp\PYZus{}with\PYZus{}size} \PY{o}{=} \PY{n}{copy}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{training\PYZus{}image}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Draw the keypoints without size or orientation on one copy of the training image }
+        \PY{n}{cv2}\PY{o}{.}\PY{n}{drawKeypoints}\PY{p}{(}\PY{n}{training\PYZus{}image}\PY{p}{,} \PY{n}{keypoints}\PY{p}{,} \PY{n}{keyp\PYZus{}without\PYZus{}size}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{255}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Draw the keypoints with size and orientation on the other copy of the training image}
+        \PY{n}{cv2}\PY{o}{.}\PY{n}{drawKeypoints}\PY{p}{(}\PY{n}{training\PYZus{}image}\PY{p}{,} \PY{n}{keypoints}\PY{p}{,} \PY{n}{keyp\PYZus{}with\PYZus{}size}\PY{p}{,} \PY{n}{flags} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{DRAW\PYZus{}MATCHES\PYZus{}FLAGS\PYZus{}DRAW\PYZus{}RICH\PYZus{}KEYPOINTS}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Display the image with the keypoints without size or orientation}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Keypoints Without Size or Orientation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{keyp\PYZus{}without\PYZus{}size}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Display the image with the keypoints with size and orientation}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Keypoints With Size and Orientation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{keyp\PYZus{}with\PYZus{}size}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print the number of keypoints detected}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Number of keypoints Detected: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{keypoints}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    As we can see in the right image, every keypoint has a center, a size,
+and an angle. The center determines the location of each keypoint in the
+image; the size of each keypoint is determined by the patch size used by
+BRIEF to create its feature vector; and the angle tells us the
+orientation of the keypoint as determined by rBRIEF.
+
+Once the keypoints for the training image have been found and their
+corresponding ORB descriptor has been calculated, the same thing can be
+done for the query image. In order to see the properties of the ORB
+algorithm more clearly, in the next sections we will use the same image
+as our training and query image.
+
+    \hypertarget{feature-matching}{%
+\section{Feature Matching}\label{feature-matching}}
+
+Once we have the ORB descriptors for \emph{both} the training and query
+images, the final step is to perform keypoint matching between the two
+images using their corresponding ORB descriptors. This \emph{matching}
+is usually performed by a matching function. One of the most commonly
+used matching functions is called \emph{Brute-Force}.
+
+In the code below we will use OpenCV's \texttt{BFMatcher} class to
+compare the keypoints in the training and query images.. The parameters
+of the Brute-Force matcher are setup using the
+\texttt{cv2.BFMatcher()}function. The parameters of the
+\texttt{cv2.BFMatcher()}function and their default values are given
+below:
+
+\texttt{cv2.BFMatcher(normType\ =\ cv2.NORM\_L2,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ crossCheck\ =\ false)}
+
+Parameters:
+
+\begin{itemize}
+\item
+  \textbf{normType}\\
+  Specifies the metric used to determine the quality of the match. By
+  default, \texttt{normType\ =\ cv2.NORM\_L2}, which measures the
+  distance between two descriptors. However, for binary descriptors like
+  the ones created by ORB, the Hamming metric is more suitable. The
+  Hamming metric determines the distance by counting the number of
+  dissimilar bits between the binary descriptors. When the ORB
+  descriptor is created using \texttt{WTA\_K\ =\ 2}, two random pixels
+  are chosen and compared in brightness. The index of the brightest
+  pixel is returned as either 0 or 1. Such output only occupies 1 bit,
+  and therefore the \texttt{cv2.NORM\_HAMMING} metric should be used.
+  If, on the other hand, the ORB descriptor is created using
+  \texttt{WTA\_K\ =\ 3}, three random pixels are chosen and compared in
+  brightness. The index of the brightest pixel is returned as either 0,
+  1, or 2. Such output will occupy 2 bits, and therefore a special
+  variant of the Hamming distance, known as the
+  \texttt{cv2.NORM\_HAMMING2} (the 2 stands for 2 bits), should be used
+  instead. Then, for any metric chosen, when comparing the keypoints in
+  the training and query images, the pair with the smaller metric
+  (distance between them) is considered the best match.
+\item
+  \textbf{crossCheck} - \emph{bool} A Boolean variable and can be set to
+  either \texttt{True} or \texttt{False}. Cross-checking is very useful
+  for eliminating false matches. Cross-checking works by performing the
+  matching procedure two times. The first time the keypoints in the
+  training image are compared to those in the query image; the second
+  time, however, the keypoints in the query image are compared to those
+  in the training image (\emph{i.e.} the comparison is done backwards).
+  When cross-checking is enabled a match is considered valid only if
+  keypoint \emph{A} in the training image is the best match of keypoint
+  \emph{B} in the query image and vice-versa (that is, if keypoint
+  \emph{B} in the query image is the best match of point \emph{A} in the
+  training image).
+\end{itemize}
+
+Once the parameters of the \emph{BFMatcher} have been set, we can use
+the \texttt{.match(descriptors\_train,\ descriptors\_query)} method to
+find the matching keypoints between the training and query images using
+their ORB descriptors. Finally, we will use the
+\texttt{cv2.drawMatches\ ()} function to visualize the matching
+keypoints found by the Brute-Force matcher. This function stacks the
+training and query images horizontally and draws lines from the
+keypoints in the training image to their corresponding best matching
+keypoints in the query image. Remember that in order to see the
+properties of the ORB algorithm more clearly, in the following examples
+we will use the same image as our training and query image.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{import} \PY{n+nn}{cv2}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        
+        \PY{c+c1}{\PYZsh{} Set the default figure size}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{14.0}\PY{p}{,} \PY{l+m+mf}{7.0}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Load the training image}
+        \PY{n}{image1} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./images/face.jpeg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Load the query image}
+        \PY{n}{image2} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./images/face.jpeg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the training image to RGB}
+        \PY{n}{training\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image1}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the query image to RGB}
+        \PY{n}{query\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image2}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Display the training and query images}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Training Image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{training\PYZus{}image}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Query Image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{query\PYZus{}image}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the training image to gray scale}
+        \PY{n}{training\PYZus{}gray} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{training\PYZus{}image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the query image to gray scale}
+        \PY{n}{query\PYZus{}gray} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{query\PYZus{}image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Set the parameters of the ORB algorithm by specifying the maximum number of keypoints to locate and}
+        \PY{c+c1}{\PYZsh{} the pyramid decimation ratio}
+        \PY{n}{orb} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{ORB\PYZus{}create}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mf}{2.0}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Find the keypoints in the gray scale training and query images and compute their ORB descriptor.}
+        \PY{c+c1}{\PYZsh{} The None parameter is needed to indicate that we are not using a mask in either case.}
+        \PY{n}{keypoints\PYZus{}train}\PY{p}{,} \PY{n}{descriptors\PYZus{}train} \PY{o}{=} \PY{n}{orb}\PY{o}{.}\PY{n}{detectAndCompute}\PY{p}{(}\PY{n}{training\PYZus{}gray}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}
+        \PY{n}{keypoints\PYZus{}query}\PY{p}{,} \PY{n}{descriptors\PYZus{}query} \PY{o}{=} \PY{n}{orb}\PY{o}{.}\PY{n}{detectAndCompute}\PY{p}{(}\PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Create a Brute Force Matcher object. Set crossCheck to True so that the BFMatcher will only return consistent}
+        \PY{c+c1}{\PYZsh{} pairs. Such technique usually produces best results with minimal number of outliers when there are enough matches.}
+        \PY{n}{bf} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{BFMatcher}\PY{p}{(}\PY{n}{cv2}\PY{o}{.}\PY{n}{NORM\PYZus{}HAMMING}\PY{p}{,} \PY{n}{crossCheck} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Perform the matching between the ORB descriptors of the training image and the query image}
+        \PY{n}{matches} \PY{o}{=} \PY{n}{bf}\PY{o}{.}\PY{n}{match}\PY{p}{(}\PY{n}{descriptors\PYZus{}train}\PY{p}{,} \PY{n}{descriptors\PYZus{}query}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} The matches with shorter distance are the ones we want. So, we sort the matches according to distance}
+        \PY{n}{matches} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{matches}\PY{p}{,} \PY{n}{key} \PY{o}{=} \PY{k}{lambda} \PY{n}{x} \PY{p}{:} \PY{n}{x}\PY{o}{.}\PY{n}{distance}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Connect the keypoints in the training image with their best matching keypoints in the query image.}
+        \PY{c+c1}{\PYZsh{} The best matches correspond to the first elements in the sorted matches list, since they are the ones}
+        \PY{c+c1}{\PYZsh{} with the shorter distance. We draw the first 300 mathces and use flags = 2 to plot the matching keypoints}
+        \PY{c+c1}{\PYZsh{} without size or orientation.}
+        \PY{n}{result} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{drawMatches}\PY{p}{(}\PY{n}{training\PYZus{}gray}\PY{p}{,} \PY{n}{keypoints\PYZus{}train}\PY{p}{,} \PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{n}{keypoints\PYZus{}query}\PY{p}{,} \PY{n}{matches}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{300}\PY{p}{]}\PY{p}{,} \PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{n}{flags} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Display the best matching points}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Best Matching Points}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{result}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print the number of keypoints detected in the training image}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of Keypoints Detected In The Training Image: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{keypoints\PYZus{}train}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print the number of keypoints detected in the query image}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of Keypoints Detected In The Query Image: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{keypoints\PYZus{}query}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print total number of matching points between the training and query images}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Number of Matching Keypoints Between The Training and Query Images: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{matches}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    In the above example, since both the training and query images are the
+exactly the same, we expect that the same number of keypoints are found
+in both images, and that all the keypoints match. We can clearly see
+that this indeed the case, ORB has found the same number of keypoints in
+both images and the Brute-Force matcher has been able to correctly match
+all the keypoints in training and query images.
+
+    \hypertarget{orbs-main-properties}{%
+\section{ORB's Main Properties}\label{orbs-main-properties}}
+
+We will now explore each of the main properties of the ORB algorithm:
+
+\begin{itemize}
+\tightlist
+\item
+  Scale Invariance
+\item
+  Rotational Invariance
+\item
+  Illumination Invariance
+\item
+  Noise Invariance
+\end{itemize}
+
+Again, in order to see the properties of the ORB algorithm more clearly,
+in the following examples we will use the same image as our training and
+query image.
+
+\hypertarget{scale-invariance}{%
+\subsection{Scale Invariance}\label{scale-invariance}}
+
+The ORB algorithm is scale invariant. This means that it is able to
+detect objects in images regardless of their size. To see this, we will
+now use our Brute-Force matcher to match points between the training
+image and a query image that is a ¼ the size of the original training
+image.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{import} \PY{n+nn}{cv2}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        
+        \PY{c+c1}{\PYZsh{} Set the default figure size}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{14.0}\PY{p}{,} \PY{l+m+mf}{7.0}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Load the training image}
+        \PY{n}{image1} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./images/face.jpeg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Load the query image}
+        \PY{n}{image2} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./images/faceQS.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the training image to RGB}
+        \PY{n}{training\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image1}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the query image to RGB}
+        \PY{n}{query\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image2}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Display the images}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Training Image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{training\PYZus{}image}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Query Image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{query\PYZus{}image}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the training image to gray scale}
+        \PY{n}{training\PYZus{}gray} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{training\PYZus{}image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the query image to gray scale}
+        \PY{n}{query\PYZus{}gray} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{query\PYZus{}image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Set the parameters of the ORB algorithm by specifying the maximum number of keypoints to locate and}
+        \PY{c+c1}{\PYZsh{} the pyramid decimation ratio}
+        \PY{n}{orb} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{ORB\PYZus{}create}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mf}{2.0}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Find the keypoints in the gray scale training and query images and compute their ORB descriptor.}
+        \PY{c+c1}{\PYZsh{} The None parameter is needed to indicate that we are not using a mask in either case.}
+        \PY{n}{keypoints\PYZus{}train}\PY{p}{,} \PY{n}{descriptors\PYZus{}train} \PY{o}{=} \PY{n}{orb}\PY{o}{.}\PY{n}{detectAndCompute}\PY{p}{(}\PY{n}{training\PYZus{}gray}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}
+        \PY{n}{keypoints\PYZus{}query}\PY{p}{,} \PY{n}{descriptors\PYZus{}query} \PY{o}{=} \PY{n}{orb}\PY{o}{.}\PY{n}{detectAndCompute}\PY{p}{(}\PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Create a Brute Force Matcher object. Set crossCheck to True so that the BFMatcher will only return consistent}
+        \PY{c+c1}{\PYZsh{} pairs. Such technique usually produces best results with minimal number of outliers when there are enough matches.}
+        \PY{n}{bf} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{BFMatcher}\PY{p}{(}\PY{n}{cv2}\PY{o}{.}\PY{n}{NORM\PYZus{}HAMMING}\PY{p}{,} \PY{n}{crossCheck} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Perform the matching between the ORB descriptors of the training image and the query image}
+        \PY{n}{matches} \PY{o}{=} \PY{n}{bf}\PY{o}{.}\PY{n}{match}\PY{p}{(}\PY{n}{descriptors\PYZus{}train}\PY{p}{,} \PY{n}{descriptors\PYZus{}query}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} The matches with shorter distance are the ones we want. So, we sort the matches according to distance}
+        \PY{n}{matches} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{matches}\PY{p}{,} \PY{n}{key} \PY{o}{=} \PY{k}{lambda} \PY{n}{x} \PY{p}{:} \PY{n}{x}\PY{o}{.}\PY{n}{distance}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Connect the keypoints in the training image with their best matching keypoints in the query image.}
+        \PY{c+c1}{\PYZsh{} The best matches correspond to the first elements in the sorted matches list, since they are the ones}
+        \PY{c+c1}{\PYZsh{} with the shorter distance. We draw the first 30 mathces and use flags = 2 to plot the matching keypoints}
+        \PY{c+c1}{\PYZsh{} without size or orientation.}
+        \PY{n}{result} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{drawMatches}\PY{p}{(}\PY{n}{training\PYZus{}gray}\PY{p}{,} \PY{n}{keypoints\PYZus{}train}\PY{p}{,} \PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{n}{keypoints\PYZus{}query}\PY{p}{,} \PY{n}{matches}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{30}\PY{p}{]}\PY{p}{,} \PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{n}{flags} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Display the best matching points}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Best Matching Points}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{result}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print the shape of the training image}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{The Training Image has shape:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{training\PYZus{}gray}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}Print the shape of the query image}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The Query Image has shape:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{query\PYZus{}gray}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print the number of keypoints detected in the training image}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Number of Keypoints Detected In The Training Image: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{keypoints\PYZus{}train}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print the number of keypoints detected in the query image}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of Keypoints Detected In The Query Image: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{keypoints\PYZus{}query}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print total number of matching points between the training and query images}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Number of Matching Keypoints Between The Training and Query Images: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{matches}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    In the above example, notice that the training image is 553 x 471
+pixels, while the query image is 138 x 117 pixels, ¼ the size of the
+original training image. Also notice that the number of keypoints
+detected in the query image is only 65, much smaller than the 831
+keypoints found in the training image. Nevertheless, we can see that our
+Brute-Force matcher can match most of the keypoints in the query image
+with their corresponding keypoints in the training image.
+
+\hypertarget{rotational-invariance}{%
+\subsection{Rotational Invariance}\label{rotational-invariance}}
+
+The ORB algorithm is also rotationally invariant. This means that it is
+able to detect objects in images regardless of their orientation. To see
+this, we will now use our Brute-Force matcher to match points between
+the training image and a query image that has been rotated by 90
+degrees.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{import} \PY{n+nn}{cv2}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        
+        \PY{c+c1}{\PYZsh{} Set the default figure size}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{14.0}\PY{p}{,} \PY{l+m+mf}{7.0}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Load the training image}
+        \PY{n}{image1} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./images/face.jpeg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Load the query image}
+        \PY{n}{image2} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./images/faceR.jpeg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the training image to RGB}
+        \PY{n}{training\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image1}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the query image to RGB}
+        \PY{n}{query\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image2}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Display the images}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Training Image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{training\PYZus{}image}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Query Image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{query\PYZus{}image}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the training image to gray scale}
+        \PY{n}{training\PYZus{}gray} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{training\PYZus{}image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the query image to gray scale}
+        \PY{n}{query\PYZus{}gray} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{query\PYZus{}image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Set the parameters of the ORB algorithm by specifying the maximum number of keypoints to locate and}
+        \PY{c+c1}{\PYZsh{} the pyramid decimation ratio}
+        \PY{n}{orb} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{ORB\PYZus{}create}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mf}{2.0}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Find the keypoints in the gray scale training and query images and compute their ORB descriptor.}
+        \PY{c+c1}{\PYZsh{} The None parameter is needed to indicate that we are not using a mask in either case.}
+        \PY{n}{keypoints\PYZus{}train}\PY{p}{,} \PY{n}{descriptors\PYZus{}train} \PY{o}{=} \PY{n}{orb}\PY{o}{.}\PY{n}{detectAndCompute}\PY{p}{(}\PY{n}{training\PYZus{}gray}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}
+        \PY{n}{keypoints\PYZus{}query}\PY{p}{,} \PY{n}{descriptors\PYZus{}query} \PY{o}{=} \PY{n}{orb}\PY{o}{.}\PY{n}{detectAndCompute}\PY{p}{(}\PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Create a Brute Force Matcher object. Set crossCheck to True so that the BFMatcher will only return consistent}
+        \PY{c+c1}{\PYZsh{} pairs. Such technique usually produces best results with minimal number of outliers when there are enough matches.}
+        \PY{n}{bf} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{BFMatcher}\PY{p}{(}\PY{n}{cv2}\PY{o}{.}\PY{n}{NORM\PYZus{}HAMMING}\PY{p}{,} \PY{n}{crossCheck} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Perform the matching between the ORB descriptors of the training image and the query image}
+        \PY{n}{matches} \PY{o}{=} \PY{n}{bf}\PY{o}{.}\PY{n}{match}\PY{p}{(}\PY{n}{descriptors\PYZus{}train}\PY{p}{,} \PY{n}{descriptors\PYZus{}query}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} The matches with shorter distance are the ones we want. So, we sort the matches according to distance}
+        \PY{n}{matches} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{matches}\PY{p}{,} \PY{n}{key} \PY{o}{=} \PY{k}{lambda} \PY{n}{x} \PY{p}{:} \PY{n}{x}\PY{o}{.}\PY{n}{distance}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Connect the keypoints in the training image with their best matching keypoints in the query image.}
+        \PY{c+c1}{\PYZsh{} The best matches correspond to the first elements in the sorted matches list, since they are the ones}
+        \PY{c+c1}{\PYZsh{} with the shorter distance. We draw the first 100 mathces and use flags = 2 to plot the matching keypoints}
+        \PY{c+c1}{\PYZsh{} without size or orientation.}
+        \PY{n}{result} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{drawMatches}\PY{p}{(}\PY{n}{training\PYZus{}gray}\PY{p}{,} \PY{n}{keypoints\PYZus{}train}\PY{p}{,} \PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{n}{keypoints\PYZus{}query}\PY{p}{,} \PY{n}{matches}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,} \PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{n}{flags} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Display the best matching points}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Best Matching Points}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{result}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print the number of keypoints detected in the training image}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Number of Keypoints Detected In The Training Image: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{keypoints\PYZus{}train}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print the number of keypoints detected in the query image}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of Keypoints Detected In The Query Image: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{keypoints\PYZus{}query}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print total number of matching points between the training and query images}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Number of Matching Keypoints Between The Training and Query Images: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{matches}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    In the above example, we see that the number of keypoints detected in
+both images is very similar, and that even though the query image is
+rotated, our Brute-Force matcher can still match about 78\% of the
+keypoints found. Also, notice that most of the matching keypoints are
+close to particular facial features, such as the eyes, nose, and mouth.
+
+\hypertarget{illumination-invariance}{%
+\subsection{Illumination Invariance}\label{illumination-invariance}}
+
+The ORB algorithm is also illumination invariant. This means that it is
+able to detect objects in images regardless of their illumination. To
+see this, we will now use our Brute-Force matcher to match points
+between the training image and a query image that is much brighter.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{import} \PY{n+nn}{cv2}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        
+        \PY{c+c1}{\PYZsh{} Set the default figure size}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{14.0}\PY{p}{,} \PY{l+m+mf}{7.0}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Load the training image}
+        \PY{n}{image1} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./images/face.jpeg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Load the query image}
+        \PY{n}{image2} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./images/faceRI.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the training image to RGB}
+        \PY{n}{training\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image1}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the query image to RGB}
+        \PY{n}{query\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image2}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Display the images}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Training Image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{training\PYZus{}image}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Query Image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{query\PYZus{}image}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the training image to gray scale}
+        \PY{n}{training\PYZus{}gray} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{training\PYZus{}image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the query image to gray scale}
+        \PY{n}{query\PYZus{}gray} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{query\PYZus{}image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Set the parameters of the ORB algorithm by specifying the maximum number of keypoints to locate and}
+        \PY{c+c1}{\PYZsh{} the pyramid decimation ratio}
+        \PY{n}{orb} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{ORB\PYZus{}create}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mf}{2.0}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Find the keypoints in the gray scale training and query images and compute their ORB descriptor.}
+        \PY{c+c1}{\PYZsh{} The None parameter is needed to indicate that we are not using a mask in either case.}
+        \PY{n}{keypoints\PYZus{}train}\PY{p}{,} \PY{n}{descriptors\PYZus{}train} \PY{o}{=} \PY{n}{orb}\PY{o}{.}\PY{n}{detectAndCompute}\PY{p}{(}\PY{n}{training\PYZus{}gray}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}
+        \PY{n}{keypoints\PYZus{}query}\PY{p}{,} \PY{n}{descriptors\PYZus{}query} \PY{o}{=} \PY{n}{orb}\PY{o}{.}\PY{n}{detectAndCompute}\PY{p}{(}\PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Create a Brute Force Matcher object. Set crossCheck to True so that the BFMatcher will only return consistent}
+        \PY{c+c1}{\PYZsh{} pairs. Such technique usually produces best results with minimal number of outliers when there are enough matches.}
+        \PY{n}{bf} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{BFMatcher}\PY{p}{(}\PY{n}{cv2}\PY{o}{.}\PY{n}{NORM\PYZus{}HAMMING}\PY{p}{,} \PY{n}{crossCheck} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Perform the matching between the ORB descriptors of the training image and the query image}
+        \PY{n}{matches} \PY{o}{=} \PY{n}{bf}\PY{o}{.}\PY{n}{match}\PY{p}{(}\PY{n}{descriptors\PYZus{}train}\PY{p}{,} \PY{n}{descriptors\PYZus{}query}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} The matches with shorter distance are the ones we want. So, we sort the matches according to distance}
+        \PY{n}{matches} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{matches}\PY{p}{,} \PY{n}{key} \PY{o}{=} \PY{k}{lambda} \PY{n}{x} \PY{p}{:} \PY{n}{x}\PY{o}{.}\PY{n}{distance}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Connect the keypoints in the training image with their best matching keypoints in the query image.}
+        \PY{c+c1}{\PYZsh{} The best matches correspond to the first elements in the sorted matches list, since they are the ones}
+        \PY{c+c1}{\PYZsh{} with the shorter distance. We draw the first 100 mathces and use flags = 2 to plot the matching keypoints}
+        \PY{c+c1}{\PYZsh{} without size or orientation.}
+        \PY{n}{result} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{drawMatches}\PY{p}{(}\PY{n}{training\PYZus{}gray}\PY{p}{,} \PY{n}{keypoints\PYZus{}train}\PY{p}{,} \PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{n}{keypoints\PYZus{}query}\PY{p}{,} \PY{n}{matches}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,} \PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{n}{flags} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Display the best matching points}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Best Matching Points}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{result}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print the number of keypoints detected in the training image}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Number of Keypoints Detected In The Training Image: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{keypoints\PYZus{}train}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print the number of keypoints detected in the query image}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of Keypoints Detected In The Query Image: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{keypoints\PYZus{}query}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print total number of matching points between the training and query images}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Number of Matching Keypoints Between The Training and Query Images: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{matches}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    In the above example, we see that the number of keypoints detected in
+both images is again very similar, and that even though the query image
+is much brighter, our Brute-Force matcher can still match about 63\% of
+the keypoints found.
+
+\hypertarget{noise-invariance}{%
+\subsection{Noise Invariance}\label{noise-invariance}}
+
+The ORB algorithm is also noise invariant. This means that it is able to
+detect objects in images, even if the images have some degree of noise.
+To see this, we will now use our Brute-Force matcher to match points
+between the training image and a query image that has a lot of noise.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{import} \PY{n+nn}{cv2}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        
+        \PY{c+c1}{\PYZsh{} Set the default figure size}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{14.0}\PY{p}{,} \PY{l+m+mf}{7.0}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Load the training image}
+        \PY{n}{image1} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./images/face.jpeg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Load the noisy, gray scale query image. }
+        \PY{n}{image2} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./images/faceRN5.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the query image to gray scale}
+        \PY{n}{query\PYZus{}gray} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image2}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the training image to gray scale}
+        \PY{n}{training\PYZus{}gray} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image1}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Display the images}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{training\PYZus{}gray}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gray Scale Training Image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{n}{cmap} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{gray}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Query Image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Set the parameters of the ORB algorithm by specifying the maximum number of keypoints to locate and}
+        \PY{c+c1}{\PYZsh{} the pyramid decimation ratio}
+        \PY{n}{orb} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{ORB\PYZus{}create}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mf}{1.3}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Find the keypoints in the gray scale training and query images and compute their ORB descriptor.}
+        \PY{c+c1}{\PYZsh{} The None parameter is needed to indicate that we are not using a mask in either case. }
+        \PY{n}{keypoints\PYZus{}train}\PY{p}{,} \PY{n}{descriptors\PYZus{}train} \PY{o}{=} \PY{n}{orb}\PY{o}{.}\PY{n}{detectAndCompute}\PY{p}{(}\PY{n}{training\PYZus{}gray}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}
+        \PY{n}{keypoints\PYZus{}query}\PY{p}{,} \PY{n}{descriptors\PYZus{}query} \PY{o}{=} \PY{n}{orb}\PY{o}{.}\PY{n}{detectAndCompute}\PY{p}{(}\PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Create a Brute Force Matcher object. We set crossCheck to True so that the BFMatcher will only return consistent}
+        \PY{c+c1}{\PYZsh{} pairs. Such technique usually produces best results with minimal number of outliers when there are enough matches.}
+        \PY{n}{bf} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{BFMatcher}\PY{p}{(}\PY{n}{cv2}\PY{o}{.}\PY{n}{NORM\PYZus{}HAMMING}\PY{p}{,} \PY{n}{crossCheck} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Perform the matching between the ORB descriptors of the training image and the query image}
+        \PY{n}{matches} \PY{o}{=} \PY{n}{bf}\PY{o}{.}\PY{n}{match}\PY{p}{(}\PY{n}{descriptors\PYZus{}train}\PY{p}{,} \PY{n}{descriptors\PYZus{}query}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} The matches with shorter distance are the ones we want. So, we sort the matches according to distance}
+        \PY{n}{matches} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{matches}\PY{p}{,} \PY{n}{key} \PY{o}{=} \PY{k}{lambda} \PY{n}{x} \PY{p}{:} \PY{n}{x}\PY{o}{.}\PY{n}{distance}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Connect the keypoints in the training image with their best matching keypoints in the query image.}
+        \PY{c+c1}{\PYZsh{} The best matches correspond to the first elements in the sorted matches list, since they are the ones}
+        \PY{c+c1}{\PYZsh{} with the shorter distance. We draw the first 100 mathces and use flags = 2 to plot the matching keypoints}
+        \PY{c+c1}{\PYZsh{} without size or orientation.}
+        \PY{n}{result} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{drawMatches}\PY{p}{(}\PY{n}{training\PYZus{}gray}\PY{p}{,} \PY{n}{keypoints\PYZus{}train}\PY{p}{,} \PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{n}{keypoints\PYZus{}query}\PY{p}{,} \PY{n}{matches}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,} \PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{n}{flags} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} we display the image}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Best Matching Points}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{result}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print the number of keypoints detected in the training image}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of Keypoints Detected In The Training Image: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{keypoints\PYZus{}train}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print the number of keypoints detected in the query image}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of Keypoints Detected In The Query Image: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{keypoints\PYZus{}query}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print total number of matching points between the training and query images}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Number of Matching Keypoints Between The Training and Query Images: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{matches}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    In the above example, again we see that the number of keypoints detected
+in both images is very similar, and that even though the query image is
+has a lot of noise, our Brute-Force matcher can still match about 63\%
+of the keypoints found. Also, notice that most of the matching keypoints
+are close to particular facial features, such as the eyes, nose, and
+mouth. In addition, we can see that there are a few features that don't
+quite match up, but may have been chosen because of similar patterns of
+intensity in that area of the image. We will also like to point out that
+in this case we used a pyramid decimation ratio of 1.3, instead of the
+of value of 2.0 we used in the previous examples, because in this
+particular case, it produces better results.
+
+\hypertarget{object-detection}{%
+\section{Object Detection}\label{object-detection}}
+
+We will now implement the ORB algorithm to detect the face in the
+training image in another image. As usual, we will start by loading our
+training and query images.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{import} \PY{n+nn}{cv2}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        
+        \PY{c+c1}{\PYZsh{} Set the default figure size}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{14.0}\PY{p}{,} \PY{l+m+mf}{7.0}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Load the training image}
+        \PY{n}{image1} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./images/face.jpeg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Load the query image}
+        \PY{n}{image2} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./images/Team.jpeg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the training image to RGB}
+        \PY{n}{training\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image1}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the query image to RGB}
+        \PY{n}{query\PYZus{}image} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{image2}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2RGB}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Display the images}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{training\PYZus{}image}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Training Image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{query\PYZus{}image}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Query Image}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    In this particular case, the training image contains a face, therefore,
+as we have seen, the majority of the keypoints detected are close to
+facial features, such as the eyes, nose, and mouth. On the other hand,
+our query image is a picture of a group of people, one of which, is the
+woman we want to detect. Let's now detect the keypoints for the query
+image.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Set the default figure size}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{34.0}\PY{p}{,} \PY{l+m+mf}{34.0}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Convert the training image to gray scale}
+        \PY{n}{training\PYZus{}gray} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{training\PYZus{}image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Convert the query image to gray scale}
+        \PY{n}{query\PYZus{}gray} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{query\PYZus{}image}\PY{p}{,} \PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}BGR2GRAY}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Set the parameters of the ORB algorithm by specifying the maximum number of keypoints to locate and}
+        \PY{c+c1}{\PYZsh{} the pyramid decimation ratio}
+        \PY{n}{orb} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{ORB\PYZus{}create}\PY{p}{(}\PY{l+m+mi}{5000}\PY{p}{,} \PY{l+m+mf}{2.0}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Find the keypoints in the gray scale training and query images and compute their ORB descriptor.}
+        \PY{c+c1}{\PYZsh{} The None parameter is needed to indicate that we are not using a mask in either case.  }
+        \PY{n}{keypoints\PYZus{}train}\PY{p}{,} \PY{n}{descriptors\PYZus{}train} \PY{o}{=} \PY{n}{orb}\PY{o}{.}\PY{n}{detectAndCompute}\PY{p}{(}\PY{n}{training\PYZus{}gray}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}
+        \PY{n}{keypoints\PYZus{}query}\PY{p}{,} \PY{n}{descriptors\PYZus{}query} \PY{o}{=} \PY{n}{orb}\PY{o}{.}\PY{n}{detectAndCompute}\PY{p}{(}\PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{k+kc}{None}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Create copies of the query images to draw our keypoints on}
+        \PY{n}{query\PYZus{}img\PYZus{}keyp} \PY{o}{=} \PY{n}{copy}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{query\PYZus{}image}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Draw the keypoints with size and orientation on the copy of the query image}
+        \PY{n}{cv2}\PY{o}{.}\PY{n}{drawKeypoints}\PY{p}{(}\PY{n}{query\PYZus{}image}\PY{p}{,} \PY{n}{keypoints\PYZus{}query}\PY{p}{,} \PY{n}{query\PYZus{}img\PYZus{}keyp}\PY{p}{,} \PY{n}{flags} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{DRAW\PYZus{}MATCHES\PYZus{}FLAGS\PYZus{}DRAW\PYZus{}RICH\PYZus{}KEYPOINTS}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Display the query image with the keypoints with size and orientation}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Keypoints With Size and Orientation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{30}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{query\PYZus{}img\PYZus{}keyp}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print the number of keypoints detected}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Number of keypoints Detected: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{keypoints\PYZus{}query}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    We can see that the query image has keypoints in many parts of the
+image. Now that we have the keypoints and ORB descriptors of both the
+training and query images, we can use a Brute-Force matcher to try to
+locate the woman's face in the query image.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Set the default figure size}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{figure.figsize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{34.0}\PY{p}{,} \PY{l+m+mf}{34.0}\PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{} Create a Brute Force Matcher object. We set crossCheck to True so that the BFMatcher will only return consistent}
+        \PY{c+c1}{\PYZsh{} pairs. Such technique usually produces best results with minimal number of outliers when there are enough matches.}
+        \PY{n}{bf} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{BFMatcher}\PY{p}{(}\PY{n}{cv2}\PY{o}{.}\PY{n}{NORM\PYZus{}HAMMING}\PY{p}{,} \PY{n}{crossCheck} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Perform the matching between the ORB descriptors of the training image and the query image}
+        \PY{n}{matches} \PY{o}{=} \PY{n}{bf}\PY{o}{.}\PY{n}{match}\PY{p}{(}\PY{n}{descriptors\PYZus{}train}\PY{p}{,} \PY{n}{descriptors\PYZus{}query}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} The matches with shorter distance are the ones we want. So, we sort the matches according to distance}
+        \PY{n}{matches} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{matches}\PY{p}{,} \PY{n}{key} \PY{o}{=} \PY{k}{lambda} \PY{n}{x} \PY{p}{:} \PY{n}{x}\PY{o}{.}\PY{n}{distance}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Connect the keypoints in the training image with their best matching keypoints in the query image.}
+        \PY{c+c1}{\PYZsh{} The best matches correspond to the first elements in the sorted matches list, since they are the ones}
+        \PY{c+c1}{\PYZsh{} with the shorter distance. We draw the first 85 mathces and use flags = 2 to plot the matching keypoints}
+        \PY{c+c1}{\PYZsh{} without size or orientation.}
+        \PY{n}{result} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{drawMatches}\PY{p}{(}\PY{n}{training\PYZus{}gray}\PY{p}{,} \PY{n}{keypoints\PYZus{}train}\PY{p}{,} \PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{n}{keypoints\PYZus{}query}\PY{p}{,} \PY{n}{matches}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{85}\PY{p}{]}\PY{p}{,} \PY{n}{query\PYZus{}gray}\PY{p}{,} \PY{n}{flags} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} we display the image}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Best Matching Points}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{30}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{result}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print the number of keypoints detected in the training image}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of Keypoints Detected In The Training Image: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{keypoints\PYZus{}train}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print the number of keypoints detected in the query image}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of Keypoints Detected In The Query Image: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{keypoints\PYZus{}query}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Print total number of matching Keypoints between the training and query images}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Number of Matching Keypoints Between The Training and Query Images: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{matches}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    We can clearly see that even though there are many faces and objects in
+the query image, our Brute-Force matcher has been able to correctly
+locate the woman's face in the query image.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
